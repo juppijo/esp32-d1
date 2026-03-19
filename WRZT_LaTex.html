@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>LaTeX Test</title>
+
+  <!-- MathJax einbinden -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<h2>Inline Formel:</h2>
+<p>Die beruehmte Formel: $E = mc^2$</p>
+
+<h2>Block Formel:</h2>
+<p>
+$$
+R_{\min} = \frac{2\hbar}{m_e c}
+$$
+
+$$
+\sum_{i=1}^{n} i
+$$ 
+</p>
+<div>
+
+<math>
+  <msup>
+    <mi>E</mi>
+    <mn>2</mn>
+  </msup>
+</math>
+
+<math>
+  <mrow>
+    <msub>
+      <mi>R</mi>
+      <mi>min</mi>
+    </msub>
+    <mo>=</mo>
+    <mfrac>
+      <mrow>
+        <mn>2</mn>
+        <mi>ℏ</mi>
+      </mrow>
+      <mrow>
+        <msub>
+          <mi>m</mi>
+          <mi>e</mi>
+        </msub>
+        <mi>c</mi>
+      </mrow>
+    </mfrac>
+  </mrow>
+</math> 
+
+<math>
+  <mrow>
+    <mo>∫</mo>
+    <mi>f(x)</mi>
+    <mi>dx</mi>
+  </mrow>
+</math>
+
+<math>
+  <munderover>
+    <mo>∑</mo>
+    <mi>i=1</mi>
+    <mi>n</mi>
+  </munderover>
+  <mi>i</mi>
+</math>
+<math>
+  <mroot>
+    <mi>x</mi>
+    <mn>3</mn>
+  </mroot>
+</math>
+
+<math>
+  <msqrt>
+    <mi>x</mi>
+  </msqrt>
+</math>
+
+
+</div>
+
+
+</body>
+</html>
