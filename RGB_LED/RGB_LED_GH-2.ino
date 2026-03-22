@@ -15,6 +15,7 @@ AsyncWebServer server(80);
 // --- Das HTML Interface (Minimalistisch & Dunkel) ---
 
 const char index_html[] PROGMEM = R"rawliteral(
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -55,32 +56,63 @@ const char index_html[] PROGMEM = R"rawliteral(
     width: 100%;
     height: 100%;
   }
-</style>
 
+  .fullscreen-btn {
+    padding:10px 10px; margin:10px; border:none; border-radius:8px; font-size:1.4rem; 
+    cursor:pointer; font-weight:bold; transition: 0.3s;
+    background: rgba(155,155,180,0.5);
+    box-shadow: 0 0 10px rgba(185,185,205,0.2);
+  }
+  .fullscreen-btn:hover {
+    transform: scale(1.05);
+  }
+  .fullscreen-btn {
+    position: fixed;
+    top: 5px;
+    right: 15px;
+    z-index: 1000;
+  }
+</style>
 </head>
 
 <body>
-
+<button class="fullscreen-btn" onclick="toggleFullscreen()">⛶</button>
 <div id="topbar">ESP32-S3 verbunden</div>
 <div id="app"></div>
 
 <script>
-const url = "https://juppijo.github.io/esp32-d1/RGB_LED/index.html";
+  // 1. Zuerst die Funktionen definieren, damit sie bekannt sind
+  function toggleFullscreen() {
+    let elem = document.documentElement;
+    if (!document.fullscreenElement) {
+      if (elem.requestFullscreen) { elem.requestFullscreen(); }
+      else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
+    } else {
+      if (document.exitFullscreen) { document.exitFullscreen(); }
+    }
+  }
 
-// AUTOMATISCH laden
-fetch(url)
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("app").innerHTML = html;
-  })
-  .catch(err => {
-    document.getElementById("app").innerHTML =
-      "<div style='color:red;text-align:center;margin-top:40px;'>⚠️ CORS Fehler</div>";
-  });
+  // 2. Dann die externen Inhalte laden
+  const url = "https://juppijo.github.io/esp32-d1/RGB_LED/index.html";
+  
+  fetch(url)
+    .then(res => {
+      if (!res.ok) throw new Error("Server antwortet nicht");
+      return res.text();
+    })
+    .then(html => {
+      document.getElementById("app").innerHTML = html;
+      console.log("GitHub Content geladen");
+    })
+    .catch(err => {
+      document.getElementById("app").innerHTML = 
+        "<div style='color:red; text-align:center; padding:20px;'>⚠️ Fehler beim Laden von GitHub: " + err.message + "</div>";
+    });
 </script>
 
 </body>
 </html>
+
 )rawliteral";
 
 void setup() {
@@ -110,6 +142,7 @@ void setup() {
       else if (color == "magenta")  pixels.setPixelColor(0, pixels.Color(255, 255, 255));
       else if (color == "aqua")  pixels.setPixelColor(0, pixels.Color(0, 255, 255)); 
       else if (color == "blue")   pixels.setPixelColor(0, pixels.Color(0, 0, 255));
+      else if (color == "orange")  pixels.setPixelColor(0, pixels.Color(255, 165, 0));
       else if (color == "off")    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
       pixels.show();
       request->send(200, "text/plain", "OK");
