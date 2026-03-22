@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html lang='de'><head><meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<style>
-	body{background:#1a1a4a; color:#e0e0e0; text-align:center; font-family:sans-serif; padding-top:50px;}
-	.card{background:#2a2a6a; padding:30px; border-radius:15px; display:inline-block; border: 1px solid #444;}
-	.btn{padding:15px 30px; margin:10px; border:none; border-radius:8px; font-size:1.1rem; cursor:pointer; font-weight:bold; transition: 0.3s;}
-	.red{background:#cc3333; color:white;} .red:hover{background:#ff4444;}
-	.green{background:#33cc33; color:white;} .green:hover{background:#44ff44;}
-	.blue{background:#3333cc; color:white;} .blue:hover{background:#4444ff;}
-.	off{background:#555; color:white;}</style></head>
+<html lang='de'>
+<head>
+	<meta charset='UTF-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<style>
+		body{background:#1a1a4a; color:#e0e0e0; text-align:center; font-family:sans-serif; padding-top:20px;}
+		.card{margin-top: 20px; background:#2a2a6a; padding: 20px; border-radius:15px; display:inline-block; border: 1px solid #444;}
+		.btn{padding:15px 30px; margin:10px; border:none; border-radius:8px; font-size:1.1rem; cursor:pointer; font-weight:bold; transition: 0.3s;}
+
+		.red{background:#cc3333; color:white;} .red:hover{background:#ff4444;}
+		.green{background:#33cc33; color:white;} .green:hover{background:#44ff44;}
+		.blue{background:#3333cc; color:white;} .blue:hover{background:#4444ff;}
+
+		.yellow{background:#cccc33; color:white;} .yellow:hover{background:#ff4444;}
+		.magenta{background:#cc33cc; color:white;} .magenta:hover{background:#ff44ff;}
+		.aqua{background:#33cccc; color:white;} .aqua:hover{background:#44ffff;}
+
+		.white{background:#bbbbbb; color:white;} .white:hover{background:#dddddd;}
+		.off{background:#555; color:white;}
+	</style>
+</head>
 <body>
 	<div class='card'>
 		<h1>WRZT - Lichtsteuerung</h1>
@@ -17,7 +28,12 @@
 		<button class='btn green' onclick="fetch('/set?color=green')">GRÜN</button>
 		<button class='btn blue' onclick="fetch('/set?color=blue')">BLAU</button>
 		<br>
+		<button class='btn yellow' onclick="fetch('/set?color=yellow')">YELLOW</button>
+		<button class='btn magenta' onclick="fetch('/set?color=magenta')">MAGENTA</button>
+		<button class='btn aqua' onclick="fetch('/set?color=aqua')">AQUA</button>
+		<br>
 		<button class='btn off' onclick="fetch('/set?color=off')">LED AUS</button>
+		<button class='btn white' onclick="fetch('/set?color=white')">WHITE</button>
 		<p>
 			<small>Zaminia System Status: Online</small>
 		</p>
