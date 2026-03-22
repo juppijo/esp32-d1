@@ -20,11 +20,21 @@
 
 		.white{background:#bbbbbb; color:white;} .white:hover{background:#dddddd;}
 		.off{background:#555; color:white;}
+		.btnfs {
+			padding:10px 20px; margin:12px; border:none; border-radius:8px; font-size:1.4rem; 
+			cursor:pointer; font-weight:bold; transition: 0.3s;
+			background:#aaaacc; 
+		  box-shadow: 0 0 10px rgba(155,155,155,0.1);
+		}
+		.btnfs:hover {
+		  transform: scale(1.07);
+		}
 	</style>
 </head>
 <body>
 	<div class='card'>
-		<h1>WRZT - Lichtsteuerung</h1>
+		<h1>WRZT - Lichtsteuerung. <button class="btnfs" onclick="toggleFullscreen()">⛶</button></h1>
+
 		<p>Wähle eine Farbe für die System-LED:</p>
 		<button class='btn red' onclick="fetch('/set?color=red')">ROT</button>
 		<button class='btn green' onclick="fetch('/set?color=green')">GRÜN</button>
@@ -42,4 +52,13 @@
 		</p>
 	</div>
 </body>
+<script>
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
+</script>
 </html>
