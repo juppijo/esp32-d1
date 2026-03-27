@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniConsole</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app" id="app">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">Mini<strong>Console</strong></span>
+        <span class="port-badge" id="portBadge">DISCONNECTED</span>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn" id="themeBtn" title="Dark / Hell Modus">
+          <span id="themeIcon">☀</span>
+        </button>
+        <button class="icon-btn" id="fullscreenBtn" title="Vollbild">
+          <span id="fsIcon">⛶</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Config Bar -->
+    <div class="configbar">
+      <div class="config-group">
+        <label>PORT</label>
+        <input type="text" id="portHint" value="/dev/ttyACM0" placeholder="/dev/ttyACM0" readonly />
+      </div>
+      <div class="config-group">
+        <label>BAUD</label>
+        <select id="baudRate">
+          <option>9600</option>
+          <option>19200</option>
+          <option>38400</option>
+          <option>57600</option>
+          <option selected>115200</option>
+          <option>230400</option>
+          <option>460800</option>
+          <option>921600</option>
+        </select>
+      </div>
+      <div class="config-group">
+        <label>DATA</label>
+        <select id="dataBits">
+          <option>7</option>
+          <option selected>8</option>
+        </select>
+      </div>
+      <div class="config-group">
+        <label>STOP</label>
+        <select id="stopBits">
+          <option selected>1</option>
+          <option>2</option>
+        </select>
+      </div>
+      <div class="config-group">
+        <label>PARITY</label>
+        <select id="parity">
+          <option selected>none</option>
+          <option>even</option>
+          <option>odd</option>
+        </select>
+      </div>
+      <div class="config-group">
+        <label>NEWLINE</label>
+        <select id="lineEnding">
+          <option value="\n">LF</option>
+          <option value="\r\n" selected>CR+LF</option>
+          <option value="\r">CR</option>
+        </select>
+      </div>
+      <div class="config-actions">
+        <button class="btn-connect" id="connectBtn">CONNECT</button>
+        <button class="btn-clear" id="clearBtn" title="Ausgabe leeren">CLR</button>
+      </div>
+    </div>
+
+    <!-- Terminal Output -->
+    <main class="terminal-wrap">
+      <div class="scanlines"></div>
+      <pre class="terminal-output" id="output"><span class="sys">[MiniConsole] Bereit. Klicke CONNECT um einen seriellen Port zu öffnen.
+[MiniConsole] Web Serial API erforderlich (Chrome / Edge).
+</span></pre>
+    </main>
+
+    <!-- Input Bar -->
+    <div class="inputbar">
+      <span class="prompt">➤</span>
+      <input
+        type="text"
+        id="inputField"
+        class="input-field"
+        placeholder="Befehl eingeben …"
+        autocomplete="off"
+        spellcheck="false"
+        disabled
+      />
+      <button class="btn-send" id="sendBtn" disabled>SEND</button>
+    </div>
+
+    <!-- Status Bar -->
+    <footer class="statusbar">
+      <span id="statusMsg">Nicht verbunden</span>
+      <span class="statusbar-right">
+        <span id="byteCount">RX: 0 B</span>
+        <span class="sep">|</span>
+        <span>Web Serial API</span>
+      </span>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
